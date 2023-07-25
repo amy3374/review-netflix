@@ -1,16 +1,32 @@
 import React from "react";
+import { Badge } from "react-bootstrap";
 
-const MovieCard = () => {
+const MovieCard = ({ item }) => {
   return (
     <div
       className="movie-card"
       style={{
         backgroundImage:
           "url(" +
-          `https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg` +
+          `https://www.themoviedb.org/t/p/w355_and_h200_multi_faces${item?.poster_path}` +
           ")",
       }}
-    ></div>
+    >
+      <div className="overlay">
+        <h1>{item?.title}</h1>
+        <div>
+          {item?.genre_ids.map((id) => (
+            <Badge className="genre" bg="danger">
+              {id}
+            </Badge>
+          ))}
+        </div>
+        <div className="card-info">
+          <span>{item?.vote_average}</span>
+          <span>{item?.adult == true ? "청불" : "Under 18"}</span>
+        </div>
+      </div>
+    </div>
   );
 };
 
