@@ -40,22 +40,29 @@ function getMovies() {
     }
   };
 }
-function getMoviesDetail({ id }) {
-  console.log("id", id);
+function getMoviesDetail(id) {
   return async (dispatch) => {
     try {
-      // dispatch({ type: "GET_MOVIES_REQUEST" });
+      dispatch({ type: "GET_MOVIES_REQUEST" });
       const moviesDetailApi = api.get(
         `/movie/${id}?api_key=${API_KEY}&language=en-US`
       );
-      let [moviesDetail] = await Promise.all([moviesDetailApi]);
-      console.log("movies detail", moviesDetail);
-      // dispatch({
-      //   type: "GET_MOVIES_DETAIL_SUCCESS",
-      //   payload: {
+      const moviesReviewApi = api.get(
+        `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+      );
 
-      //   },
-      // });
+      let [moviesDetail, moviesReview] = await Promise.all([
+        moviesDetailApi,
+        moviesReviewApi,
+      ]);
+      console.log("moviesReview", moviesReview);
+      dispatch({
+        type: "GET_MOVIES_DETAIL_SUCCESS",
+        payload: {
+          moviesDetail: moviesDetail.data,
+          moviesReview: moviesReview.data.results,
+        },
+      });
     } catch (error) {
       //에러핸들링 하는 곳
     }
