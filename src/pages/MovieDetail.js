@@ -30,14 +30,14 @@ const MovieDetail = () => {
           <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gPbM0MK8CP8A174rmUwGsADNYKD.jpg" />
         </Col>
         <Col lg={6}>
-          <div>
+          {/* <div>
             {moviesDetail &&
               moviesDetail.genres.map((item) => (
                 <Badge className="detail-genre" pill bg="danger">
                   {item.name}
                 </Badge>
               ))}
-          </div>
+          </div> */}
           <h1>{moviesDetail.title}</h1>
           <h3>{moviesDetail.tagline}</h3>
           <div className="detail-info">
@@ -73,18 +73,19 @@ const MovieDetail = () => {
           <div className="review-btn">
             <Button variant="outline-light" size="lg">
               REVIEWS ({moviesReview.length})
-            </Button>{" "}
+            </Button>
             <Button variant="outline-light" size="lg">
               RELATED MOVIES
             </Button>
           </div>
           <div className="review-area">
-            {moviesReview.map((item) => (
-              <div className="review-content">
-                <h4>{item.author}</h4>
-                <p>{item.content}</p>
-              </div>
-            ))}
+            {moviesReview &&
+              moviesReview.map((item) => (
+                <div className="review-content">
+                  <h4>{item.author}</h4>
+                  <p>{item.content}</p>
+                </div>
+              ))}
           </div>
         </Col>
       </Row>
