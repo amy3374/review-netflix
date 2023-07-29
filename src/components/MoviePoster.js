@@ -9,7 +9,7 @@ const MoviePoster = ({ item }) => {
       style={{
         backgroundImage:
           "url(" +
-          `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.poster_path}` +
+          `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}` +
           ")",
       }}
     >
@@ -17,10 +17,16 @@ const MoviePoster = ({ item }) => {
         <div className="poster-header">
           <img
             width={60}
-            src="https://image.tmdb.org/t/p/original///iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
+            src={`https://www.themoviedb.org/t/p/w220_and_h330_face${item.poster_path}`}
           />
-          <h1>{item.title}</h1>
-          <h4>{item.release_date}</h4>
+          <div>
+            <h1>
+              {item.title.length > 20
+                ? item.title.substring(0, 20) + "..."
+                : item.title}
+            </h1>
+            <h4>{item.release_date}</h4>
+          </div>
           <ul className="poster-genre">
             {item.genre_ids.map((id) => (
               <li>{genreList.find((item) => item.id == id).name}</li>
@@ -28,7 +34,11 @@ const MoviePoster = ({ item }) => {
           </ul>
         </div>
         <div className="poster-overview">
-          <p>{item.overview}</p>
+          <p>
+            {item.overview.length > 200
+              ? item.overview.substring(0, 200) + "..."
+              : item.overview}
+          </p>
         </div>
         <div className="poster-social">
           <ul>

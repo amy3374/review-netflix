@@ -1,16 +1,20 @@
 import React from "react";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navigation = () => {
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
   return (
     <Navbar expand="lg" className="bg-dark" variant="dark">
       <Container fluid>
-        <Navbar.Brand href="#">
-          <img
-            width={100}
-            src="https://t3.ftcdn.net/jpg/04/81/76/22/360_F_481762281_Xcvl3QsGh1pBMvQuyKIoIqq8aYksXEwX.jpg"
-          />
-        </Navbar.Brand>
+        <img
+          className="nav-logo"
+          onClick={goToHome}
+          width={100}
+          src="https://t3.ftcdn.net/jpg/04/81/76/22/360_F_481762281_Xcvl3QsGh1pBMvQuyKIoIqq8aYksXEwX.jpg"
+        />
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

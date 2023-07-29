@@ -17,19 +17,12 @@ const MovieDetail = () => {
   return (
     <Container>
       <Row>
-        <Col lg={6}>
-          {/* <div
-            style={{
-              backgroundImage:
-                "url(" +
-                `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gPbM0MK8CP8A174rmUwGsADNYKD.jpg` +
-                ")",
-            }}
-          ></div> */}
-
-          <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gPbM0MK8CP8A174rmUwGsADNYKD.jpg" />
+        <Col lg={6} className="detail-col">
+          <img
+            src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${moviesDetail.poster_path}`}
+          />
         </Col>
-        <Col lg={6}>
+        <Col lg={6} className="detail-col">
           {/* <div>
             {moviesDetail &&
               moviesDetail.genres.map((item) => (
